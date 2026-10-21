@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcualdora</title>
+    <link rel="stylesheet"  href="../clasificador/style.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="card">
+        <h2>Operador Matemático</h2>
+        <form id="calculadoraForm">
+            <div class="input-group">
+                <label for="inputA">Primer número (a):</label>
+                <input type="number" id="inputA" step="any" required placeholder="Ej: 10">
+            </div>
+
+            <div class="input-group">
+                <label for="selectOperador">Operador:</label>
+                <select id="selectOperador" required>
+                    <option value="+">Sumar (+)</option>
+                    <option value="-">Restar (−)</option>
+                    <option value="*">Multiplicar (×)</option>
+                    <option value="/">Dividir (÷)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="inputB">Segundo número (b):</label>
+                <input type="number" id="inputB" step="any" required placeholder="Ej: 5">
+            </div>
+
+            <button type="submit">Calcular</button>
+        </form>
+
+        <!-- Contenedor para mostrar el resultado devuelto por la función -->
+        <div id="resultado" class="resultado">Resultado: --</div>
+    </div>
+
+    <!-- Conectamos el script de lógica -->
+    <script>
+        const form = document.getElementById('calculadoraForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que se recargue la página
+
+            const a = parseFloat(document.getElementById('inputA').value);
+            const b = parseFloat(document.getElementById('inputB').value);
+            const operador = document.getElementById('selectOperador').value;
+
+            // Llamamos a la función con los valores del formulario
+            const resultado = operar(a, b, operador);
+
+            // Mostramos el resultado en pantalla
+            document.getElementById('resultado').innerText = "Resultado: " + resultado;
+        });
+    </script>
+</body>
+</html>

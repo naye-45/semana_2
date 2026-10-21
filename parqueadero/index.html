@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarifa de parqueo</title>
+    <link rel="stylesheet" href="../clasificador/style.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="card">
+        <h2>Tarifa de Parqueadero</h2>
+        <form id="parqueaderoForm">
+            <div class="input-group">
+                <label for="inputMinutos">Tiempo estacionado (en minutos):</label>
+                <input type="number" id="inputMinutos" min="1" required placeholder="Ej: 75">
+            </div>
+
+            <button type="submit">Calcular Tarifa</button>
+        </form>
+
+        <!-- Muestra el cálculo de horas y el total a pagar -->
+        <div id="resultado" class="resultado">Total a pagar: $0.00</div>
+    </div>
+
+    <!-- Conectamos la lógica JS -->
+    <script>
+        const form = document.getElementById('parqueaderoForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita recargar la página
+
+            const minutos = parseInt(document.getElementById('inputMinutos').value);
+            
+            // Calculamos las horas cobranza y la tarifa
+            const horas = horasACobrar(minutos);
+            const total = calcularTarifa(minutos);
+
+            // Mostramos los resultados en la interfaz
+            document.getElementById('resultado').innerHTML = `
+                Horas a cobrar: <strong>${horas} h</strong><br>
+                Total a pagar: <strong>${total}</strong>
+            `;
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calsificador de notas</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js"></script>
+</head>
+<body>
+    <div class="card">
+        <h2>Clasificador de notas</h2>
+        <form id="notaForm">
+            <label for="inputNota">Ingresa una nota (0 a 10):</label>
+            <input type="number" id="inputNota" step="0.01" min="0" max="10" required>
+            <button type="submit">Clasificar</button>
+        </form>
+        <div id="resultado" class="resultado"></div>
+    </div>
+    
+      <script>
+        // Capturamos el evento del formulario para mostrar el resultado en la web
+        const form = document.getElementById('notaForm');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita que la página se recargue
+            
+            const valorInput = parseFloat(document.getElementById('inputNota').value);
+            const mensajeResultado = clasificarNota(valorInput); // Llamamos a nuestra función
+            
+            document.getElementById('resultado').innerText = "Resultado: " + mensajeResultado;
+        });
+    </script>
+</body>
+</html>
